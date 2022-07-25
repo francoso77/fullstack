@@ -1,9 +1,9 @@
-const NOME = "asdfasdf asdfsadf ";
+const NOME = "Fleek é UMA ESCOLA";
 var tamanhoNome = NOME.length;
 var nomeCorreto = false;
 var arrayNome = NOME.split("");
 var contaEspaco = NOME.split(" ");
-
+var caracteresEspeciais = [" ","ã", "é", "ç","ê" ]
 //teste se nome é vázio
 if (!NOME)
 {
@@ -20,7 +20,7 @@ else if (contaEspaco.length >= 2)
         for(i = 0; i < tamanhoNome; i++)
         {
             //teste se é espaço em branco
-            if(arrayNome[i].charCodeAt() != 32)
+            if((!caracteresEspeciais.includes(arrayNome[i])))
             {
                 //teste se é letras A a Z 
                 if(arrayNome[i].charCodeAt() < 65 || arrayNome[i].charCodeAt() > 122)
@@ -38,6 +38,7 @@ else if (contaEspaco.length >= 2)
                 {
                     nomeCorreto = true;
                 }
+
             }
         }
         if (nomeCorreto == true)
@@ -47,6 +48,7 @@ else if (contaEspaco.length >= 2)
         else
         {
             console.log("o Nome deve conter apenas LETRAS");
+         
         }
     }
     else

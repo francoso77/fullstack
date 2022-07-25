@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./estilos.css">
+        <title>Exemplo de tabela</title>
+    </head>
+    <body>
+        <h1>Tebela de saldo em estoque</h1>
+        <table id="tab">
+            <thead>
+                
+                <tr>
+                    <th>Cod</th>
+                    <th>Des</th>
+                    <th>Saldo</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0125</td>
+                    <td>TECIDO BARIO GELO</td>
+                    <td>385,85</td>
+                </tr>
+                <tr>
+                    <td>01231</td>
+                    <td>TECIDO RODEIO PRETO</td>
+                    <td>126,90</td>
+                </tr>
+                <tr>
+                    <td>0855</td>
+                    <td>TECIDO ZINCO BRANCO</td>
+                    <td>21,13</td>
+                </tr>
+                <tr>
+                    <td>1325</td>
+                    <td>TECIDO BRILHANTE 75 CINZA</td>
+                    <td>385,85</td>
+                </tr>
+            </tbody>
+
+        </table>
+        <input type="button" value="Pegar dados" id="pegar" onclick="dadosTabela()">
+        <h2 class="class_Sub2">Anotações da Aula 01</h2>
+        <p>
+            Embora a princípio tentar absorver todos esses novos conceitos possa parecer como beber de uma mangueira de incêndio - pegando emprestado uma frase do MIT - , tenha certeza de que, no final do semestre, estaremos capacitados e experientes em aprender e aplicar esses conceitos.
+        </p>
+        <h2 class="class_Sub1">CS50 IDE</h2>
+        <p>
+            Para começar a escrever nosso código rapidamente, usaremos uma ferramenta para o curso, o CS50 IDE , um ambiente de desenvolvimento integrado que inclui programas e recursos para escrever código. CS50 IDE é construído sobre um IDE baseado em nuvem muito popular, usado por programadores gerais, mas com recursos educacionais adicionais e personalização.
+        </p>
+        <!--No span a borda não vai na linha toda, só onde tem palavras
+        o <p> por exemplo pega a linha toda-->
+        <span class="class_Sub2">Tentar absorver todos esses novos a escrever nosso código rapidamente.</span>
+        <br>
+        <label>Insirá aqui o seu Nome:</label>
+        <input type="text" maxlength="50" id="txtNome"> 
+        <br>
+        <label>Insirá aqui o seu Endereço:</label>
+        <input type="text" maxlength="50" id="txtEndereco"> 
+        <br>
+        <label>Insirá aqui a sua Idade:</label>
+        <input type="tel" maxlength="3" id="txtIdade"> 
+        <p id="txtResultado"></p>
+        
+    </body>
+</html>
+
+<script src="./index.js" type="text/javascript"></script>
