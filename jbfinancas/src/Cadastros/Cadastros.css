@@ -1,0 +1,12 @@
+.CadastroCliente{
+    margin-top: 50px;
+
+}
+
+.CadastroCliente input, label, select,h1{
+    margin-top: 5px;
+    margin-left: 20%;
+    display: block;
+    text-align: left;
+
+}

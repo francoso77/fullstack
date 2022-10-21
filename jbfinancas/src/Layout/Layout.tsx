@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
+import ButtonText from '../Components/Button'
 
 import Footer from './Footer'
 import Header from './Header'
@@ -28,9 +29,11 @@ export default function Layout() {
             <LoginContexto.Provider value={{ ...login, updateLogin: updateLogin }}>
                 <Header />
 
+                <ButtonText />
                 <Outlet />
 
                 <Footer />
+
             </LoginContexto.Provider>
         </>
     )
