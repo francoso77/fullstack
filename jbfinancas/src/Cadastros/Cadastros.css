@@ -3,10 +3,15 @@
 
 }
 
-.CadastroCliente input, label, select,h1{
+.CadastroCliente input, label, select,h1, span{
     margin-top: 5px;
     margin-left: 20%;
     display: block;
     text-align: left;
 
+}
+
+.CadastroCliente span{
+    font-size: 9px;
+    color: red;
 }
