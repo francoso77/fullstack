@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ClsValidaCampo from "../Utils/ClsValidaCampos";
+import './InputText.css'
 
 export default function InputText({
     label,
@@ -59,10 +60,12 @@ export default function InputText({
         } else if (valida === 'sexo' && !validaCampo.eSEXO(vr)) {
             setValidacao('SEXO inválido!')
         } else if (valida === 'cep' && buscaCEP(vr)) {
-            if (!CEP_ATIVO){
+            if (!CEP_ATIVO) {
                 setValidacao('CEP inválido!')
             }
 
+        } else if (valida === 'tel' && !validaCampo.eTEL(vr)) {
+            setValidacao('Formato correto do tel é (xx) xxxxx-xxxx')
         } else {
             setValidacao("")
         }
@@ -81,7 +84,7 @@ export default function InputText({
                 onBlur={validarNaoVazio}
                 onChange={(evento) => { setState({ ...dados, [campo]: evento.target.value }) }}
             />
-            <span>{validacao}</span>
+            <span className={id}>{validacao}</span>
         </>
     )
 }

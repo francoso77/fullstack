@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import axios from "axios"
+import exp from "constants"
 
 interface dadosCepInterface {
     cep: string,
@@ -9,15 +10,16 @@ interface dadosCepInterface {
     uf: string,
     tem: boolean
 }
-const expCEP: RegExp = new RegExp('^[0-9]{2}.[0-9]{3}-[0-9]{3}$', 'g')
+const expCEP: RegExp = new RegExp(/^[0-9]{2}.[0-9]{3}-[0-9]{3}$/)
 const expUF: RegExp = new RegExp(/^([A-Z]){2}$/)
-const expCPF: RegExp = new RegExp('^[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$', 'g')
-const expCNPJ: RegExp = new RegExp('^[0-9]{2}.[0-9]{3}.[0-9]{3}\/[0-9]{4}-[0-9]{2}$', 'g')
+const expCPF: RegExp = new RegExp(/^[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$/,'gm')
+const expCNPJ: RegExp = new RegExp(/^[0-9]{2}.[0-9]{3}.[0-9]{3}\/[0-9]{4}-[0-9]{2}$/)
 const expSEXO: RegExp = new RegExp(/[a-z]{1}$/)
 const expEMAIL: RegExp = new RegExp(/^\b\S+@\w+\.[a-z0-9]{1,3}\.[a-z]{2}$|^\b\S+@\w+\.[a-z0-9]{1,3}$/, 'gim')
 const expINTEIRO: RegExp = new RegExp(/^\d+(,\d{1,3})?$/)
 const expPERCENTUAL: RegExp = new RegExp(/^[0-9]*(,\d{1,3})?%$/)
 const arrSEXO: Array<string> = ['m', 'f', 'i']
+const expTEL: RegExp = new RegExp(/^\([0-9]{2}\) [0-9]{5}-[0-9]{4}$/,'gm')
 
 const arrUF: Array<string> = [
     'AC',
@@ -79,6 +81,23 @@ export default class ClsValidaCampo {
 
         }
     }
+    
+    /**
+     * Valida o campo TEL
+     * @param _eTEL string
+     * @returns Retorna se o campo TEL está correto 
+     */
+
+         public eTEL(_eTEL: string): boolean {
+
+            if (this.campoVazio(_eTEL) === true) {
+                return false
+            }
+            else {
+                return expTEL.test(_eTEL) ? true : false
+    
+            }
+        }
 
     /**
      * Valida o campo UF
@@ -112,7 +131,7 @@ export default class ClsValidaCampo {
             return false
         }
         else {
-            return this.validaCPF(_eCPF) ? true : false
+            return this.validaCPF(_eCPF) && expCPF.test(_eCPF) ? true : false
         }
     }
 
