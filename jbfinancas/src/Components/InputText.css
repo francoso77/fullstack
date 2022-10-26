@@ -1,4 +1,4 @@
-input, label, span{
+.InputText, .spanValidacao, .labelInputText{
     margin-top: 5px;
     margin-left: 20%;
     display: block;
@@ -6,7 +6,7 @@ input, label, span{
 
 }
 
-span{
+.spanValidacao {
     font-size: 9px;
     color: red;
 }

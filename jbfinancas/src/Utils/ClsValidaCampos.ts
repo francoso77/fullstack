@@ -12,14 +12,16 @@ interface dadosCepInterface {
 }
 const expCEP: RegExp = new RegExp(/^[0-9]{2}.[0-9]{3}-[0-9]{3}$/)
 const expUF: RegExp = new RegExp(/^([A-Z]){2}$/)
-const expCPF: RegExp = new RegExp(/^[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$/,'gm')
+
+const expCPF: RegExp = new RegExp('^[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$', 'gm')
+
 const expCNPJ: RegExp = new RegExp(/^[0-9]{2}.[0-9]{3}.[0-9]{3}\/[0-9]{4}-[0-9]{2}$/)
 const expSEXO: RegExp = new RegExp(/[a-z]{1}$/)
 const expEMAIL: RegExp = new RegExp(/^\b\S+@\w+\.[a-z0-9]{1,3}\.[a-z]{2}$|^\b\S+@\w+\.[a-z0-9]{1,3}$/, 'gim')
 const expINTEIRO: RegExp = new RegExp(/^\d+(,\d{1,3})?$/)
 const expPERCENTUAL: RegExp = new RegExp(/^[0-9]*(,\d{1,3})?%$/)
 const arrSEXO: Array<string> = ['m', 'f', 'i']
-const expTEL: RegExp = new RegExp(/^\([0-9]{2}\) [0-9]{5}-[0-9]{4}$/,'gm')
+const expTEL: RegExp = new RegExp(/^\([0-9]{2}\) [0-9]{5}-[0-9]{4}$/, 'gm')
 
 const arrUF: Array<string> = [
     'AC',
@@ -71,33 +73,47 @@ export default class ClsValidaCampo {
      */
 
     public eCEP(_eCEP: string): boolean {
-
+        
+        let CEP_ATIVO: boolean = false
+        console.log('cep antes ', CEP_ATIVO )
         if (this.campoVazio(_eCEP) === true) {
-            return false
+            return CEP_ATIVO
         }
         else {
-            _eCEP ? this.verificaCEP(_eCEP) : false
-            return expCEP.test(_eCEP) ? true : false
+            this.verificaCEP(_eCEP).then (temCep =>{
+                if (temCep){
+                    expCEP.test(_eCEP)
+                    console.log(temCep)
+                    console.log(expCEP.test(_eCEP))
+                    CEP_ATIVO =  true
+                } else {
+                    CEP_ATIVO =  false
+                }
 
+            }).catch (err =>{
+                console.log(err)
+                CEP_ATIVO = false
+            })
+            return CEP_ATIVO
         }
     }
-    
+
     /**
      * Valida o campo TEL
      * @param _eTEL string
      * @returns Retorna se o campo TEL está correto 
      */
 
-         public eTEL(_eTEL: string): boolean {
+    public eTEL(_eTEL: string): boolean {
 
-            if (this.campoVazio(_eTEL) === true) {
-                return false
-            }
-            else {
-                return expTEL.test(_eTEL) ? true : false
-    
-            }
+        if (this.campoVazio(_eTEL) === true) {
+            return false
         }
+        else {
+            return expTEL.test(_eTEL) ? true : false
+
+        }
+    }
 
     /**
      * Valida o campo UF
@@ -128,10 +144,13 @@ export default class ClsValidaCampo {
     public eCPF(_eCPF: string): boolean {
 
         if (this.campoVazio(_eCPF) === true) {
+
             return false
         }
         else {
-            return this.validaCPF(_eCPF) && expCPF.test(_eCPF) ? true : false
+
+            return this.validaCPF(_eCPF)
+
         }
     }
 
@@ -145,7 +164,7 @@ export default class ClsValidaCampo {
             return false
         }
         else {
-            return this.validarCNPJ(_eCNPJ) && expCNPJ.test(_eCNPJ) ? true : false
+            return this.validarCNPJ(_eCNPJ)
         }
     }
 

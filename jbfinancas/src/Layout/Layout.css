@@ -5,6 +5,10 @@ html{
 
 }
 
+h1{
+    text-align: left;
+    margin-left: 20%;
+}
 html, body{
     margin: 0;
     padding: 0;

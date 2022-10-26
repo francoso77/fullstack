@@ -11,37 +11,25 @@ export default function InputText({
     dados,
     campo,
     setState,
-    valida,
+    valida
+
 }: {
-    label: String,
-    id: String,
-    tipo: String,
-    valor: String,
-    placeholder: String,
+    label: string,
+    id: string,
+    tipo: string,
+    valor: string,
+    placeholder: string,
     dados: any,
-    campo: String,
+    campo: string,
     setState: React.Dispatch<React.SetStateAction<any>>,
-    valida: String
+    valida: string
+
 }) {
+
+    const [validaCEP, setValidaCEP] = useState<boolean>(false)
 
     const validaCampo: ClsValidaCampo = new ClsValidaCampo()
 
-    let CEP_ATIVO: Boolean = true
-
-    const buscaCEP = (CEP: String) => {
-        if (CEP) {
-            validaCampo.verificaCEP(CEP).then(temCEP => {
-                if (temCEP) {
-                    CEP_ATIVO = true
-
-                } else {
-                    CEP_ATIVO = false
-                }
-            }).catch(ERR => {
-                CEP_ATIVO = false
-            })
-        }
-    }
     const [validacao, setValidacao] = useState('')
 
     const validarNaoVazio = (evento: any) => {
@@ -59,13 +47,11 @@ export default function InputText({
             setValidacao("UF Inválido!")
         } else if (valida === 'sexo' && !validaCampo.eSEXO(vr)) {
             setValidacao('SEXO inválido!')
-        } else if (valida === 'cep' && buscaCEP(vr)) {
-            if (!CEP_ATIVO) {
-                setValidacao('CEP inválido!')
-            }
-
         } else if (valida === 'tel' && !validaCampo.eTEL(vr)) {
             setValidacao('Formato correto do tel é (xx) xxxxx-xxxx')
+        } else if (valida === 'cep' && !validaCampo.eCEP(vr)) {
+            console.log('dentro do else if cep: ')
+            setValidacao('CEP Inválido!')
         } else {
             setValidacao("")
         }
@@ -73,18 +59,16 @@ export default function InputText({
 
     return (
         <>
-            <label>{label}</label>
-            <input
+            <label className="labelInputText">{label}</label>
+            <input className="InputText"
                 type={tipo}
                 id={id}
                 value={valor}
                 placeholder={placeholder}
-                dados={dados}
-                campo={campo}
                 onBlur={validarNaoVazio}
                 onChange={(evento) => { setState({ ...dados, [campo]: evento.target.value }) }}
             />
-            <span className={id}>{validacao}</span>
+            <span className="spanValidacao">{validacao}</span>
         </>
     )
 }

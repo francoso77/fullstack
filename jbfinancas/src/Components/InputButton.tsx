@@ -17,6 +17,7 @@ export default function InputButton(
     return (
         <>
             <input 
+                className="InputButton"
                 id= {id}
                 type={tipo} 
                 value={valor}
