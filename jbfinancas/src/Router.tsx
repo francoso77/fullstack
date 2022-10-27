@@ -6,11 +6,13 @@ import CadastroConta from './Cadastros/CadastroConta'
 import Erro404 from './Layout/Erro404'
 import Layout from './Layout/Layout'
 import Login from './Login/Login'
+import ErroAplication from './Layout/ErroAplication'
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Layout />,
+        errorElement: <ErroAplication />,
         children: [
             {
                 path: "cadastrocliente",
