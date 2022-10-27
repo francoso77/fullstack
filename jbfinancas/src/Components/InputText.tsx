@@ -26,11 +26,24 @@ export default function InputText({
 
 }) {
 
-    const [validaCEP, setValidaCEP] = useState<boolean>(false)
 
     const validaCampo: ClsValidaCampo = new ClsValidaCampo()
 
     const [validacao, setValidacao] = useState('')
+
+    const testaCEP = (_CEP: string) => {
+        
+        validaCampo.verificaCEP(_CEP).then(temCEP => {
+            if (temCEP){
+
+                setValidacao('')
+       
+            }else {
+                setValidacao('CEP Inválido!')
+                
+            }
+        })
+    }
 
     const validarNaoVazio = (evento: any) => {
 
@@ -49,9 +62,8 @@ export default function InputText({
             setValidacao('SEXO inválido!')
         } else if (valida === 'tel' && !validaCampo.eTEL(vr)) {
             setValidacao('Formato correto do tel é (xx) xxxxx-xxxx')
-        } else if (valida === 'cep' && !validaCampo.eCEP(vr)) {
-            console.log('dentro do else if cep: ')
-            setValidacao('CEP Inválido!')
+        } else if (valida === 'cep') {
+            testaCEP(vr)
         } else {
             setValidacao("")
         }
