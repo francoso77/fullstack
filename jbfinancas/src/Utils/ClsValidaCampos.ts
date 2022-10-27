@@ -198,8 +198,7 @@ export default class ClsValidaCampo {
      */
     public eEMAIL(_eEMAIL: string): boolean {
 
-        return expEMAIL.test(_eEMAIL) ? true : false
-
+        return expEMAIL.test(_eEMAIL)
     }
 
     /**

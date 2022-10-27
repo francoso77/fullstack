@@ -32,15 +32,15 @@ export default function InputText({
     const [validacao, setValidacao] = useState('')
 
     const testaCEP = (_CEP: string) => {
-        
+
         validaCampo.verificaCEP(_CEP).then(temCEP => {
-            if (temCEP){
+            if (temCEP) {
 
                 setValidacao('')
-       
-            }else {
+
+            } else {
                 setValidacao('CEP Inválido!')
-                
+
             }
         })
     }
@@ -48,8 +48,7 @@ export default function InputText({
     const validarNaoVazio = (evento: any) => {
 
         let vr: any = evento.target.value
-
-
+     
         if (valida === 'txt' && validaCampo.campoVazio(vr)) {
             setValidacao("Campo não pode ser vázio!")
         } else if (valida === 'cpf' && !validaCampo.eCPF(vr)) {
@@ -64,6 +63,8 @@ export default function InputText({
             setValidacao('Formato correto do tel é (xx) xxxxx-xxxx')
         } else if (valida === 'cep') {
             testaCEP(vr)
+        } else if (valida === 'email' && !validaCampo.eEMAIL(vr)) {
+            setValidacao('E-mail com formato inválido!')
         } else {
             setValidacao("")
         }
@@ -78,7 +79,8 @@ export default function InputText({
                 value={valor}
                 placeholder={placeholder}
                 onBlur={validarNaoVazio}
-                onChange={(evento) => { setState({ ...dados, [campo]: evento.target.value }) }}
+                onChange={(evento) => { setState({ ...dados, [campo]: 
+                    valida !=='email'? evento.target.value.toUpperCase() : evento.target.value}) }}
             />
             <span className="spanValidacao">{validacao}</span>
         </>

@@ -21,8 +21,7 @@ export default function CadastroCliente() {
     
 
     return (
-        <LoginContexto.Consumer>
-            {
+        <LoginContexto.Consumer>{
                 ({ nome, updateLogin, logado }) =>
 
                     <>
