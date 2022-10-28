@@ -17,23 +17,28 @@ export const router = createBrowserRouter([
             {
                 path: "cadastrocliente",
                 element: <CadastroCliente />,
+                errorElement: <ErroAplication />
             },
             {
                 path: "cadastrofornecedor",
                 element: <CadastroFornecedor />,
+                errorElement: <ErroAplication />
             },
             {
                 path: "cadastroconta",
                 element: <CadastroConta />,
-            }
+                errorElement: <ErroAplication />
+            },
+            {
+                path: "login",
+                element: <Login />,
+                errorElement: <ErroAplication />
+            },
         ],
-    },
-    {
-        path: "/login",
-        element: <Login />,
     },
     {
         path: "*",
         element: <Erro404 />,
+        errorElement: <ErroAplication />
     }
 ])

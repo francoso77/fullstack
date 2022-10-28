@@ -25,10 +25,7 @@ export default function CadastroCliente() {
                 ({ nome, updateLogin, logado }) =>
 
                     <>
-
-                        <input type="button" value="Alterar Usuário" onClick={() => updateLogin(true, 'Frank')} />
-
-
+                        
                         <h1>Cadastro Cliente</h1>
 
                         {logado && <div>
