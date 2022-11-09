@@ -7,7 +7,7 @@ import Header from './Header'
 
 import './Layout.css'
 
-const loginContextoPadrao = {
+export const loginContextoPadrao = {
     logado: false,
     nome: '',
     updateLogin: (logado: boolean, nome: string) => { }
