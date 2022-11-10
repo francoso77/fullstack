@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { createContext, useState } from 'react'
 import { Outlet } from 'react-router-dom'
+import { LoginContextoInterface } from '../Interfaces/LoginContextoInterface'
 
 
 import Footer from './Footer'
@@ -14,7 +15,7 @@ export const loginContextoPadrao = {
 }
 
 
-export const LoginContexto = React.createContext({ ...loginContextoPadrao })
+export const LoginContexto = createContext<LoginContextoInterface>({ ...loginContextoPadrao })
 
 export default function Layout() {
 
