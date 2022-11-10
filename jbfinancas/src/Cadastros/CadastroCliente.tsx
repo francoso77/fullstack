@@ -22,7 +22,7 @@ export default function CadastroCliente() {
 
     return (
         <LoginContexto.Consumer>{
-                ({ nome, updateLogin, logado }) =>
+                ({ logado }) =>
 
                     <>
                         

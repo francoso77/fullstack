@@ -20,7 +20,7 @@ export default function CadastroFornecedor() {
     })
     return (
         <LoginContexto.Consumer>{
-            ({ nome, updateLogin, logado }) =>
+            ({ logado }) =>
 
                 <>
 
