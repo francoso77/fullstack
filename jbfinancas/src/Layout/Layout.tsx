@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { LoginContextoInterface } from '../Interfaces/LoginContextoInterface'
 
@@ -16,6 +16,8 @@ export const loginContextoPadrao = {
 
 
 export const LoginContexto = createContext<LoginContextoInterface>({ ...loginContextoPadrao })
+
+export const useGlobalContexto = () => useContext(LoginContexto)
 
 export default function Layout() {
 
