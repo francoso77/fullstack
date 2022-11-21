@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import InputButton from '../Components/InputButton';
 import InputText from '../Components/InputText';
-import { LoginContexto } from '../Layout/Layout'
+import { ContextoGlobal } from '../Contextos/ContextoGlobal';
+
 
 interface rsClientesInterface {
     id: string,
@@ -19,61 +20,61 @@ export default function CadastroCliente() {
     })
 
     
+   
+    const DadosContextoGlobal = useContext(ContextoGlobal)
 
-    return (
-        <LoginContexto.Consumer>{
-                ({ logado }) =>
+  
+        return (
 
-                    <>
-                        
-                        <h1>Cadastro Cliente</h1>
+        <>
 
-                        {logado && <div>
-                            <InputText
-                                label='Id: '
-                                tipo='text'
-                                valor={rsClientes.id}
-                                id='txtId'
-                                placeholder='id'
-                                dados={rsClientes}
-                                campo='id'
-                                setState={setRsClientes}
-                                valida='txt'
-                            />
-                            <InputText
-                                label='Cliente: '
-                                tipo='text'
-                                valor={rsClientes.cliente}
-                                id='txtCliente'
-                                placeholder=''
-                                dados={rsClientes}
-                                campo='cliente'
-                                setState={setRsClientes}
-                                valida='txt'
-                            />
-                            <InputText
-                                label='CPF: '
-                                tipo='text'
-                                valor={rsClientes.cpf}
-                                id='txtCPF'
-                                placeholder=''
-                                dados={rsClientes}
-                                campo='cpf'
-                                setState={setRsClientes}
-                                valida='cep'
-                                
-                            />
-                            <br />
+            <h1>Cadastro Cliente</h1>
 
-                            <InputButton
-                                id='btConfirmar'
-                                tipo='Button'
-                                valor='OK'
+            {globalState.loginState.logado && <div>
+                <InputText
+                    label='Id: '
+                    tipo='text'
+                    valor={rsClientes.id}
+                    id='txtId'
+                    placeholder='id'
+                    dados={rsClientes}
+                    campo='id'
+                    setState={setRsClientes}
+                    valida='txt'
+                />
+                <InputText
+                    label='Cliente: '
+                    tipo='text'
+                    valor={rsClientes.cliente}
+                    id='txtCliente'
+                    placeholder=''
+                    dados={rsClientes}
+                    campo='cliente'
+                    setState={setRsClientes}
+                    valida='txt'
+                />
+                <InputText
+                    label='CPF: '
+                    tipo='text'
+                    valor={rsClientes.cpf}
+                    id='txtCPF'
+                    placeholder=''
+                    dados={rsClientes}
+                    campo='cpf'
+                    setState={setRsClientes}
+                    valida='cep'
 
-                            />
-                        </div>}
-                    </>
-            }
-        </LoginContexto.Consumer>
+                />
+                <br />
+
+                <InputButton
+                    id='btConfirmar'
+                    tipo='Button'
+                    valor='OK'
+
+                />
+            </div>}
+        </>
+
     )
 }

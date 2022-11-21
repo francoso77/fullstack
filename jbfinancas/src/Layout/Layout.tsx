@@ -1,43 +1,27 @@
-import React, { createContext, useContext, useState } from 'react'
+import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { LoginContextoInterface } from '../Interfaces/LoginContextoInterface'
-
-
+import { ContextoGlobal } from '../Contextos/ContextoGlobal'
+import useGlobalState from '../States/GlobalState'
 import Footer from './Footer'
 import Header from './Header'
-
 import './Layout.css'
 
-export const loginContextoPadrao = {
-    logado: false,
-    nome: '',
-    updateLogin: (logado: boolean, nome: string) => { }
-}
-
-
-export const LoginContexto = createContext<LoginContextoInterface>({ ...loginContextoPadrao })
-
-export const useGlobalContexto = () => useContext(LoginContexto)
 
 export default function Layout() {
 
-    const [login, setLogin] = useState({ logado: false, nome: '' })
-
-    const updateLogin = (logado: boolean, nome: string) => {
-        setLogin({ logado: logado, nome: nome })
-    }
+    const {globalState, setGlobalState} = useGlobalState()
 
 
     return (
         <>
-            <LoginContexto.Provider value={{ ...login, updateLogin: updateLogin }}>
+            <ContextoGlobal.Provider value={{globalState: globalState, setGlobalState: setGlobalState}}>
                 <Header />
                 
                 <Outlet />
 
                 <Footer />
 
-            </LoginContexto.Provider>
+            </ContextoGlobal.Provider>
         </>
     )
 }
