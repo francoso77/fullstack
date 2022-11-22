@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import InputButton from '../Components/InputButton';
 import InputText from '../Components/InputText';
 import { ContextoGlobal } from '../Contextos/ContextoGlobal';
+import { GlobalStateInterface } from '../Interfaces/GlobalStateInterface';
 
 
 interface rsClientesInterface {
@@ -20,8 +21,7 @@ export default function CadastroCliente() {
     })
 
     
-   
-    const DadosContextoGlobal = useContext(ContextoGlobal)
+    const isLogado = (useContext(ContextoGlobal) as GlobalStateInterface).loginState.logado
 
   
         return (
@@ -30,7 +30,7 @@ export default function CadastroCliente() {
 
             <h1>Cadastro Cliente</h1>
 
-            {globalState.loginState.logado && <div>
+            { isLogado && <div>
                 <InputText
                     label='Id: '
                     tipo='text'

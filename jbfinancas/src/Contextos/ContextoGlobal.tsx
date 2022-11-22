@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
+import { GlobalStateInterface } from "../Interfaces/GlobalStateInterface";
 
-export const ContextoGlobal = createContext({})
+export const ContextoGlobal = createContext<GlobalStateInterface | null>(null)
 
 

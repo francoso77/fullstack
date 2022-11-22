@@ -1,16 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Login.css'
 import { LoginInterface } from '../Interfaces/LoginInterface'
-import { useGlobalContexto } from '../Layout/Layout'
+import { ContextoGlobal } from '../Contextos/ContextoGlobal'
+import { GlobalStateInterface } from '../Interfaces/GlobalStateInterface'
 
 export default function Login() {
 
     const [usuario, setUsuario] = useState<LoginInterface>({
         login: '',
-        senha: ''
+        senha: '',
+        token: ''
     })
 
-    const { updateLogin } = useGlobalContexto()
+    const setLoginState = (useContext(ContextoGlobal) as GlobalStateInterface).setLoginState
 
     const logar = () => {
 
@@ -28,7 +30,11 @@ export default function Login() {
             return rs.json()
         }).then((dadosUsuarios: Array<LoginInterface>) => {
             if (dadosUsuarios.length > 0) {
-                updateLogin(true, usuario.login)
+                setLoginState({
+                    logado: true,
+                    nome: dadosUsuarios[0].login,
+                    token: dadosUsuarios[0].token
+                })
                 console.log('Usuário encontrato... Login OK!!')
             } else {
                 console.log('Usuário Não encontrato!!')
@@ -52,7 +58,7 @@ export default function Login() {
             <input type="button" value="Login" id='btLogin'
                 onClick={logar} />
             <input type="button" value="Logout" id='btLogout'
-                onClick={() => updateLogin(false, '')} />
+                onClick={() => setLoginState({ logado: false, nome: '', token: '' })} />
         </>
     )
 }
