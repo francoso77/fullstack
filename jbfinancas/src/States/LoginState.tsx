@@ -4,7 +4,8 @@ import { LoginStateInterface } from "../Interfaces/LoginStateInterface";
 const loginStatePadrao = {
     nome:'',
     logado: false,
-    token: ''
+    token: '',
+    autorizado: false
 }
 
 export default function useLoginState(){

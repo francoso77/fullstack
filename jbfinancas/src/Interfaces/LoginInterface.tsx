@@ -1,7 +1,8 @@
 import React from 'react'
 
 export interface LoginInterface {
-    login: string
+    usuario: string
     senha: string
     token: string
+    autorizado: boolean
 }

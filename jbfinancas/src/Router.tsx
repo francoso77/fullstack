@@ -2,7 +2,7 @@ import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import CadastroCliente from './Cadastros/CadastroCliente'
 import CadastroFornecedor from './Cadastros/CadastroFornecedor'
-import CadastroConta from './Cadastros/CadastroConta'
+import CadastroEscola from './Cadastros/CadastroEscola'
 import Erro404 from './Layout/Erro404'
 import Layout from './Layout/Layout'
 import Login from './Login/Login'
@@ -12,33 +12,33 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <Layout />,
-        errorElement: <ErroAplication />,
+        errorElement: <Login />,
         children: [
             {
                 path: "cadastrocliente",
                 element: <CadastroCliente />,
-                errorElement: <ErroAplication />
+                errorElement: <Login />
             },
             {
                 path: "cadastrofornecedor",
                 element: <CadastroFornecedor />,
-                errorElement: <ErroAplication />
+                errorElement: <Login />
             },
             {
-                path: "cadastroconta",
-                element: <CadastroConta />,
-                errorElement: <ErroAplication />
+                path: "cadastroescola",
+                element: <CadastroEscola />,
+                errorElement: <Login />
             },
             {
                 path: "login",
                 element: <Login />,
-                errorElement: <ErroAplication />
+                errorElement: <Login />
             },
         ],
     },
     {
         path: "*",
         element: <Erro404 />,
-        errorElement: <ErroAplication />
+        errorElement: <Login />
     }
 ])

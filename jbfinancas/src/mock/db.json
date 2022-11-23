@@ -4,19 +4,22 @@
             "id": 1,
             "usuario": "Zanatta",
             "senha": "Fleek",
-            "token": "vsdfgsdgsdfgdfsgdfsg"
+            "token": "vsdfgsdgsdfgdfsgdfsg",
+            "autorizado": false
         },
         {
             "id": 2,
             "usuario": "Frank",
             "senha": "Cursos",
-            "token": "vsdfgsdgsdfgdfsgdfsg"
+            "token": "vsdfgsdgsdfgdfsgdfsg",
+            "autorizado": true
         },
         {
             "id": 3,
             "usuario": "Pedro",
             "senha": "jacare",
-            "token": "vsdfgsdgsdfgdfsgdfsg"
+            "token": "vsdfgsdgsdfgdfsgdfsg",
+            "autorizado": false
         }
     ]
 }

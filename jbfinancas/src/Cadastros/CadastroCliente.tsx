@@ -2,19 +2,14 @@ import React, { useContext, useState } from 'react';
 import InputButton from '../Components/InputButton';
 import InputText from '../Components/InputText';
 import { ContextoGlobal } from '../Contextos/ContextoGlobal';
+import { ClientesInterface } from '../Interfaces/ClientesInterface';
 import { GlobalStateInterface } from '../Interfaces/GlobalStateInterface';
 
-
-interface rsClientesInterface {
-    id: string,
-    cliente: string,
-    cpf: string
-}
 
 export default function CadastroCliente() {
 
 
-    const [rsClientes, setRsClientes] = useState<rsClientesInterface>({
+    const [rsClientes, setRsClientes] = useState<ClientesInterface>({
         id: '',
         cliente: '',
         cpf: ''

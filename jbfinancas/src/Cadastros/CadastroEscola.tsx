@@ -2,58 +2,61 @@ import React, { useContext, useState } from 'react';
 import InputButton from '../Components/InputButton';
 import InputText from '../Components/InputText';
 import { ContextoGlobal } from '../Contextos/ContextoGlobal';
-import { FornecedoresInterface } from '../Interfaces/FornecedoresInterface';
+import { EscolasInterface } from '../Interfaces/EscolasInterface';
 import { GlobalStateInterface } from '../Interfaces/GlobalStateInterface';
 
-export default function CadastroFornecedor() {
+export default function CadastroEscola() {
 
-    const [rsFornecedor, setRsFornecedor] = useState<FornecedoresInterface>({
+    const [rsEscolas, setRsEscolas] = useState<EscolasInterface>({
         id: '',
-        fornecedor: '',
+        escola: '',
         cnpj: ''
     })
 
-    const isLogado = (useContext(ContextoGlobal) as GlobalStateInterface).loginState.logado
 
+    const isLogado = (useContext(ContextoGlobal) as GlobalStateInterface).loginState.logado
+    const isAutorizado = (useContext(ContextoGlobal) as GlobalStateInterface).loginState.autorizado
+    
     return (
         <>
 
-
-            <h1>Cadastro Fornecedor</h1>
-
-            {isLogado && <div>
+            <h1>Cadastro Escolas</h1>
+            
+            {isAutorizado && isLogado ? 
+            
+            <div className='escola'>
                 <InputText
                     label='Id: '
                     tipo='text'
-                    valor={rsFornecedor.id}
+                    valor={rsEscolas.id}
                     id='txtId'
                     placeholder='id'
-                    dados={rsFornecedor}
+                    dados={rsEscolas}
                     campo='id'
-                    setState={setRsFornecedor}
+                    setState={setRsEscolas}
                     valida='txt'
                 />
                 <InputText
-                    label='Fornecedor: '
+                    label='Escola: '
                     tipo='text'
-                    valor={rsFornecedor.fornecedor}
-                    id='txtFornecedor'
+                    valor={rsEscolas.escola}
+                    id='txtEscola'
                     placeholder=''
-                    dados={rsFornecedor}
-                    campo='fornecedor'
-                    setState={setRsFornecedor}
+                    dados={rsEscolas}
+                    campo='escola'
+                    setState={setRsEscolas}
                     valida='txt'
                 />
                 <InputText
                     label='CNPJ: '
                     tipo='text'
-                    valor={rsFornecedor.cnpj}
+                    valor={rsEscolas.cnpj}
                     id='txtCNPJ'
                     placeholder=''
-                    dados={rsFornecedor}
+                    dados={rsEscolas}
                     campo='cnpj'
-                    setState={setRsFornecedor}
-                    valida='email'
+                    setState={setRsEscolas}
+                    valida='cnpj'
 
                 />
                 <br />
@@ -64,7 +67,12 @@ export default function CadastroFornecedor() {
                     valor='OK'
 
                 />
-            </div>}
+            </div>:
+            <>
+            </>
+            }
         </>
+
     )
+
 }

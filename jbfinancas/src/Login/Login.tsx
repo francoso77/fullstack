@@ -6,10 +6,11 @@ import { GlobalStateInterface } from '../Interfaces/GlobalStateInterface'
 
 export default function Login() {
 
-    const [usuario, setUsuario] = useState<LoginInterface>({
-        login: '',
+    const [usuarios, setUsuarios] = useState<LoginInterface>({
+        usuario: '',
         senha: '',
-        token: ''
+        token: '',
+        autorizado: false
     })
 
     const setLoginState = (useContext(ContextoGlobal) as GlobalStateInterface).setLoginState
@@ -19,12 +20,9 @@ export default function Login() {
         const URL_SERVIDOR: string = "http://localhost:3002"
 
         let urlPesquisa: string = URL_SERVIDOR.concat('/usuarios?usuario=')
-        urlPesquisa = urlPesquisa.concat(usuario.login)
+        urlPesquisa = urlPesquisa.concat(usuarios.usuario)
         urlPesquisa = urlPesquisa.concat('&senha=')
-        urlPesquisa = urlPesquisa.concat(usuario.senha)
-
-        console.log('usuario: ', usuario.login)
-        console.log('senha: ', usuario.senha)
+        urlPesquisa = urlPesquisa.concat(usuarios.senha)
 
         fetch(urlPesquisa).then(rs => {
             return rs.json()
@@ -32,9 +30,15 @@ export default function Login() {
             if (dadosUsuarios.length > 0) {
                 setLoginState({
                     logado: true,
-                    nome: dadosUsuarios[0].login,
-                    token: dadosUsuarios[0].token
+                    nome: dadosUsuarios[0].usuario,
+                    token: dadosUsuarios[0].token,
+                    autorizado: dadosUsuarios[0].autorizado
                 })
+                
+                console.log('usuario: ', dadosUsuarios[0].usuario)
+                console.log('senha: ', dadosUsuarios[0].senha)
+                console.log('autorizado: ', dadosUsuarios[0].autorizado)
+                
                 console.log('Usuário encontrato... Login OK!!')
             } else {
                 console.log('Usuário Não encontrato!!')
@@ -50,15 +54,15 @@ export default function Login() {
             <h1>Login</h1>
 
             <input type="text" id="txtLogin" placeholder='Login' autoFocus
-                onChange={(e) => setUsuario({ ...usuario, login: e.target.value })} />
+                onChange={(e) => setUsuarios({ ...usuarios, usuario: e.target.value })} />
             <input type="password" id="txtSenha" placeholder='Senha'
-                onChange={(e) => setUsuario({ ...usuario, senha: e.target.value })} />
+                onChange={(e) => setUsuarios({ ...usuarios, senha: e.target.value })} />
             <br />
 
             <input type="button" value="Login" id='btLogin'
                 onClick={logar} />
             <input type="button" value="Logout" id='btLogout'
-                onClick={() => setLoginState({ logado: false, nome: '', token: '' })} />
+                onClick={() => setLoginState({ logado: false, nome: '', token: '', autorizado: false })} />
         </>
     )
 }
