@@ -3,6 +3,7 @@ import './Login.css'
 import { LoginInterface } from '../Interfaces/LoginInterface'
 import { ContextoGlobal } from '../Contextos/ContextoGlobal'
 import { GlobalStateInterface } from '../Interfaces/GlobalStateInterface'
+import { URL_SERVIDOR } from '../Config/Setup'
 
 export default function Login() {
 
@@ -16,8 +17,6 @@ export default function Login() {
     const setLoginState = (useContext(ContextoGlobal) as GlobalStateInterface).setLoginState
 
     const logar = () => {
-
-        const URL_SERVIDOR: string = "http://localhost:3002"
 
         let urlPesquisa: string = URL_SERVIDOR.concat('/usuarios?usuario=')
         urlPesquisa = urlPesquisa.concat(usuarios.usuario)

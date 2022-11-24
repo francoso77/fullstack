@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import InputButton from '../Components/InputButton';
 import InputText from '../Components/InputText';
+import { URL_SERVIDOR } from '../Config/Setup';
 import { ContextoGlobal } from '../Contextos/ContextoGlobal';
 import { EscolasInterface } from '../Interfaces/EscolasInterface';
 import { GlobalStateInterface } from '../Interfaces/GlobalStateInterface';
@@ -10,13 +10,34 @@ export default function CadastroEscola() {
     const [rsEscolas, setRsEscolas] = useState<EscolasInterface>({
         id: '',
         escola: '',
-        cnpj: ''
+        cnpj: '',
+        email: ''
     })
 
 
     const isLogado = (useContext(ContextoGlobal) as GlobalStateInterface).loginState.logado
     const isAutorizado = (useContext(ContextoGlobal) as GlobalStateInterface).loginState.autorizado
     
+
+    const btIncluir = () => {
+
+        setTimeout(() => {
+            
+            fetch(URL_SERVIDOR.concat('/escola'), {
+                body: JSON.stringify(rsEscolas),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST'
+            }).then (rs => {
+                if (rs.status === 201) {
+                    setRsEscolas ({escola: '', cnpj: '', email:'', id:''})
+                }
+            })
+
+
+        }, 9000);
+    }
     return (
         <>
 
@@ -59,12 +80,25 @@ export default function CadastroEscola() {
                     valida='cnpj'
 
                 />
+                <InputText
+                    label='E-mail: '
+                    tipo='text'
+                    valor={rsEscolas.email}
+                    id='txtEMAIL'
+                    placeholder=''
+                    dados={rsEscolas}
+                    campo='email'
+                    setState={setRsEscolas}
+                    valida='email'
+
+                />
                 <br />
 
-                <InputButton
+                <input
                     id='btConfirmar'
-                    tipo='Button'
-                    valor='OK'
+                    type='Button'
+                    value='Incluir'
+                    onClick={btIncluir}
 
                 />
             </div>:

@@ -1,5 +1,3 @@
-import React from 'react'
-
 export interface LoginInterface {
     usuario: string
     senha: string

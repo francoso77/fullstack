@@ -63,9 +63,10 @@ export default function CadastroCliente() {
                 <br />
 
                 <InputButton
-                    id='btConfirmar'
+                    id='btIncluir'
                     tipo='Button'
-                    valor='OK'
+                    valor='Incluir'
+                    action='inlcuir'
 
                 />
             </div>}
