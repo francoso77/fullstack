@@ -62,8 +62,9 @@ export default function CadastroFornecedor() {
                     id='btConfirmar'
                     tipo='Button'
                     valor='OK'
-
+                    action=''
                 />
+
             </div>}
         </>
     )

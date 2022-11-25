@@ -23,20 +23,84 @@ export default function CadastroEscola() {
 
         setTimeout(() => {
             
-            fetch(URL_SERVIDOR.concat('/escola'), {
+            fetch(URL_SERVIDOR.concat('/escolas'), {
                 body: JSON.stringify(rsEscolas),
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 method: 'POST'
             }).then (rs => {
-                if (rs.status === 201) {
-                    setRsEscolas ({escola: '', cnpj: '', email:'', id:''})
+                if (rs.status == 201) {
+                    setRsEscolas ({
+                        escola: '', 
+                        cnpj: '', 
+                        email:'', 
+                        id:''})
                 }
             })
 
 
         }, 9000);
+
+        /*fetch(URL_SERVIDOR.concat('/escolas'))
+        .then (resp => resp.json())
+        .then ((data) =>{
+            console.log(data)
+        })
+        .catch ((error) =>{
+            console.log(error)
+        })*/
+    }
+
+    const btEditar = () => {
+
+        //setTimeout(() => {
+
+            console.log (URL_SERVIDOR.concat('/escolas?id=').concat(rsEscolas.id))
+
+            fetch(URL_SERVIDOR.concat('/escolas?id=').concat(rsEscolas.id), {
+                body: JSON.stringify(rsEscolas),
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                },
+                method: 'PUT'
+            }).then (rs => {
+                
+                return rs.json()
+                
+
+                /*if (rs.status == 201) {
+                    setRsEscolas ({
+                        escola: rsEscolas.escola, 
+                        cnpj: rsEscolas.cnpj, 
+                        email:rsEscolas.email, 
+                        id:rsEscolas.id})
+                }*/
+            }).then ((dados: Array <EscolasInterface>) =>{
+                console.log(dados)
+                
+                setRsEscolas ({
+                    escola: dados[0].escola, 
+                    cnpj: dados[0].cnpj, 
+                    email:dados[0].email, 
+                    id:dados[0].id})
+                
+            })
+
+
+        //}, 9000);
+
+        /*fetch(URL_SERVIDOR.concat('/escolas'))
+        .then (resp => resp.json())
+        .then ((data) =>{
+            console.log(data)
+        })
+        .catch ((error) =>{
+            console.log(error)
+        })*/
+
+
+
     }
     return (
         <>
@@ -99,6 +163,14 @@ export default function CadastroEscola() {
                     type='Button'
                     value='Incluir'
                     onClick={btIncluir}
+
+                />
+                
+                <input
+                    id='btEditar'
+                    type='Button'
+                    value='Editar'
+                    onClick={btEditar}
 
                 />
             </div>:

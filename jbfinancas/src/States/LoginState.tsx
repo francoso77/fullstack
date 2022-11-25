@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { LoginStateInterface } from "../Interfaces/LoginStateInterface";
 
 const loginStatePadrao = {
-    nome:'',
-    logado: false,
+    nome:'Frank',
+    logado: true,
     token: '',
-    autorizado: false
+    autorizado: true
 }
 
 export default function useLoginState(){

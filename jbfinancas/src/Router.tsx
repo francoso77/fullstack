@@ -6,7 +6,7 @@ import CadastroEscola from './Cadastros/CadastroEscola'
 import Erro404 from './Layout/Erro404'
 import Layout from './Layout/Layout'
 import Login from './Login/Login'
-import ErroAplication from './Layout/ErroAplication'
+
 
 export const router = createBrowserRouter([
     {
@@ -29,11 +29,7 @@ export const router = createBrowserRouter([
                 element: <CadastroEscola />,
                 errorElement: <Login />
             },
-            {
-                path: "login",
-                element: <Login />,
-                errorElement: <Login />
-            },
+  
         ],
     },
     {
